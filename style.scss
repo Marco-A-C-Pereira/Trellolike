@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+$bgColor: #f4cebe;
+$uiGray: #A7AFC4;
+
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    font-family: 'Segoe UI';
+}
+
+body {
+    background: $bgColor;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    min-height: 50px;
+}
+
+footer {
+    min-height: 50px;
+}
+
+main {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+
+    #btn-add {
+        position: fixed;
+        bottom: 2vh;
+        right: 2vh;
+        background: none;
+
+        span {
+            font-size: 3rem;
+        }
+    }
+}
+
+.collum-container {
+    padding-top: 2vh;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr; Bigger Screen only
+    // background: green;
+
+    .collum {
+        display: flex;
+        flex-direction: column;
+
+        .collum-title {
+            padding: 0 0.5rem;
+            border-radius: 15% 15% 0 0;
+            overflow: hidden;
+            background: blue;
+            width: max-content;
+        }
+    }
+
+}
+
+.done {
+    filter: grayscale(100%);
+}
+
+.card-wrapper {
+    display: flex;
+    
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0.5rem 0 0;
+        margin-left: 0.5rem;
+        text-align: left;
+
+        background: none;
+        
+
+        .card-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+            overflow-wrap: anywhere;
+            width: 100%;
+       }
+
+        .card-duration{
+            margin-left: 0.25rem;
+            background: #ccc;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-due {
+            margin-left: auto;
+            font-weight: 500;
+            color: #ccc;
+            white-space: none;
+            line-height: 0.75rem;
+            padding-bottom: 0.25rem;
+            padding-right: 0.25rem;
+            min-height: 1rem;
+
+            .card-bottom {
+
+                & > span {
+                    font-size: 0.75rem;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    .card-btn {
+        min-width: 10vw;
+        position: relative;
+
+        input[type=checkbox] {
+            display: none;
+        }
+
+        span:before {
+            font-family: "Material Icons";
+            color: inherit;
+            content: '\e835';
+            font-size: 2rem;
+            font-weight: lighter;
+
+            @include absolute-center();
+        }
+
+        input[type=checkbox]:checked~span:before {
+            content: '\e5ca';
+        }
+    }
+
+}
+
+.card-variation-1 {
+    $mainColor: #ab47bc;
+    background: $mainColor;
+
+    .card-btn {
+        background: darken($color: $mainColor, $amount: 5%);
+    }
+}
+
+.card-variation-2 {
+    $mainColor: #29b6f6;
+    background: $mainColor;
+
+    .card-btn {
+        background: darken($color: $mainColor, $amount: 5%);
+    }
+}
+
+$modalActive: #2ecc71;
+$modalInactive: #6c7a89;
+$modalBG: #debda2;
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+#modal-card-menu {
+    @include absolute-center();
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+    background: $modalBG;
+    // background: #2ecc71;
+    height: 50vh;
+    width: 90vw;
+    padding: 1.5vh 5%;
+
+    .fields {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2vh;
+
+        :last-child {
+            align-self: center;
+        }
+    }
+
+    .input-container {
+        position: relative;
+        border: solid 1px #ccc;
+        padding: 0 8px; // mudar depois
+        background: white;
+
+        display: flex;
+
+        >input {
+            border: none;
+            outline: 0;
+            padding: 16px 0 10px;
+            width: 100%;
+        }
+
+        input[type=date] {
+            color: transparent;
+        }
+
+        >label {
+            position: absolute;
+            transform: translate(0, 16px) scale(1);
+            transform-origin: top left;
+            transition: all 0.5s ease-in-out;
+        }
+    }
+
+    .active {
+        >label {
+            transform: translate(0, 4px) scale(.75);
+            color: $modalActive;
+        }
+
+        input[type=date] {
+            color: black;
+        }
+    }
+
+    .timeOptions {
+        display: flex;
+        height: 100%;
+        width: 50%;
+        overflow: hidden;
+        color: $modalInactive;
+
+        label {
+            position: relative;
+            width: 100%;
+
+            input {
+                display: none;
+            }
+
+            span {
+                @include absolute-center();
+                font-weight: bold;
+                font-size: 1.75rem;
+            }
+        }
+    }
+
+    .lbl-toggle {
+        display: none;
+
+        ~span {
+            font-size: 2rem;
+            color: $modalInactive;
+        }
+    }
+
+    .lbl-toggle:checked~span {
+        color: $modalActive;
+    }
+
+    .modalOptions {
+        width: 100%;
+        margin-top: auto;
+        padding: 0 2vw;
+        display: flex;
+        justify-content: space-between;
+        gap: 5vw;
+
+        :first-child {
+            margin-right: auto;
+        }
+
+        button {
+            padding: 1vw;
+            font-weight: bold;
+            background: darken($color: $modalBG, $amount: 10%);
+        }
+    }
+}

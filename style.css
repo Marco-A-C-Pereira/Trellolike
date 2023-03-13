@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+* {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: "Segoe UI";
+}
+
+body {
+  background: #f4cebe;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  min-height: 50px;
+}
+
+footer {
+  min-height: 50px;
+}
+
+main {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+main #btn-add {
+  position: fixed;
+  bottom: 2vh;
+  right: 2vh;
+  background: none;
+}
+main #btn-add span {
+  font-size: 3rem;
+}
+
+.collum-container {
+  padding-top: 2vh;
+}
+.collum-container .collum {
+  display: flex;
+  flex-direction: column;
+}
+.collum-container .collum .collum-title {
+  padding: 0 0.5rem;
+  border-radius: 15% 15% 0 0;
+  overflow: hidden;
+  background: blue;
+  width: max-content;
+}
+
+.done {
+  filter: grayscale(100%);
+}
+
+.card-wrapper {
+  display: flex;
+}
+.card-wrapper .card-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5rem 0 0;
+  margin-left: 0.5rem;
+  text-align: left;
+  background: none;
+}
+.card-wrapper .card-body .card-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+  width: 100%;
+}
+.card-wrapper .card-body .card-duration {
+  margin-left: 0.25rem;
+  background: #ccc;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.card-wrapper .card-body .card-due {
+  margin-left: auto;
+  font-weight: 500;
+  color: #ccc;
+  white-space: none;
+  line-height: 0.75rem;
+  padding-bottom: 0.25rem;
+  padding-right: 0.25rem;
+  min-height: 1rem;
+}
+.card-wrapper .card-body .card-due .card-bottom > span {
+  font-size: 0.75rem;
+  vertical-align: middle;
+}
+.card-wrapper .card-btn {
+  min-width: 10vw;
+  position: relative;
+}
+.card-wrapper .card-btn input[type=checkbox] {
+  display: none;
+}
+.card-wrapper .card-btn span:before {
+  font-family: "Material Icons";
+  color: inherit;
+  content: "\e835";
+  font-size: 2rem;
+  font-weight: lighter;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card-wrapper .card-btn input[type=checkbox]:checked ~ span:before {
+  content: "\e5ca";
+}
+
+.card-variation-1 {
+  background: #ab47bc;
+}
+.card-variation-1 .card-btn {
+  background: #9b3eab;
+}
+
+.card-variation-2 {
+  background: #29b6f6;
+}
+.card-variation-2 .card-btn {
+  background: #11aef5;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+#modal-card-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  background: #debda2;
+  height: 50vh;
+  width: 90vw;
+  padding: 1.5vh 5%;
+}
+#modal-card-menu .fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2vh;
+}
+#modal-card-menu .fields :last-child {
+  align-self: center;
+}
+#modal-card-menu .input-container {
+  position: relative;
+  border: solid 1px #ccc;
+  padding: 0 8px;
+  background: white;
+  display: flex;
+}
+#modal-card-menu .input-container > input {
+  border: none;
+  outline: 0;
+  padding: 16px 0 10px;
+  width: 100%;
+}
+#modal-card-menu .input-container input[type=date] {
+  color: transparent;
+}
+#modal-card-menu .input-container > label {
+  position: absolute;
+  transform: translate(0, 16px) scale(1);
+  transform-origin: top left;
+  transition: all 0.5s ease-in-out;
+}
+#modal-card-menu .active > label {
+  transform: translate(0, 4px) scale(0.75);
+  color: #2ecc71;
+}
+#modal-card-menu .active input[type=date] {
+  color: black;
+}
+#modal-card-menu .timeOptions {
+  display: flex;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+  color: #6c7a89;
+}
+#modal-card-menu .timeOptions label {
+  position: relative;
+  width: 100%;
+}
+#modal-card-menu .timeOptions label input {
+  display: none;
+}
+#modal-card-menu .timeOptions label span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+#modal-card-menu .lbl-toggle {
+  display: none;
+}
+#modal-card-menu .lbl-toggle ~ span {
+  font-size: 2rem;
+  color: #6c7a89;
+}
+#modal-card-menu .lbl-toggle:checked ~ span {
+  color: #2ecc71;
+}
+#modal-card-menu .modalOptions {
+  width: 100%;
+  margin-top: auto;
+  padding: 0 2vw;
+  display: flex;
+  justify-content: space-between;
+  gap: 5vw;
+}
+#modal-card-menu .modalOptions :first-child {
+  margin-right: auto;
+}
+#modal-card-menu .modalOptions button {
+  padding: 1vw;
+  font-weight: bold;
+  background: #d1a27c;
+}
+
+/*# sourceMappingURL=style.css.map */

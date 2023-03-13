@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="module" src="main.js"></script>
+
+    <template id="card-template">
+        <article class="card-wrapper">
+            <label class="card-btn">
+                <input type="checkbox">
+                <span></span>
+            </label>
+            <button class="card-body">
+                <div>
+                    <span class="card-title">Placeholder</span>
+                    <span class="card-duration"></span>
+                </div>
+
+                <span class="card-due">
+                    <div class="card-bottom hidden">
+                        <span class="material-icons">calendar_today</span>
+                        <span class="card-due-remaining"></span>
+                    </div>
+                </span>
+            </button>
+        </article>
+    </template>
+</head>
+
+<body>
+
+    <div id="modal-cardMenu" class="hidden">
+        <div id="modal-card-menu">
+            <div class="fields">
+                <section class="input-container" tabindex="1">
+                    <label for="card-title">Atividade</label>
+                    <input type="text" id="card-title">
+                </section>
+
+                <section class="input-container" tabindex="2">
+                    <label for="card-duration">Duração</label>
+                    <input type="text" id="card-duration">
+                    <div class="timeOptions">
+                        <label>
+                            <input type="checkbox" class="lbl-toggle" id="Minute">
+                            <span>M</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="lbl-toggle" id="Hour">
+                            <span>H</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="input-container" tabindex="3">
+                    <label for="card-due">Prazo</label>
+                    <input type="date" id="card-due">
+                </section>
+
+                <section>
+                    <label for="task-checkbox">
+                        <input type="radio" checked class="lbl-toggle" name="taskType" id="task-checkbox">
+                        <span class="material-icons">check_box_outline_blank</span>
+                    </label>
+
+                    <label for="task-increment">
+                        <input type="radio" class="lbl-toggle" name="taskType" id="task-increment">
+                        <span class="material-icons">add</span>
+                        <span class="material-icons">remove</span>
+                    </label>
+                </section>
+            </div>
+            <section class="modalOptions">
+                <button id="deleteCard" class="hidden">DELETAR</button>
+                <button id="cancel">CANCELAR</button>
+                <button id="createCard">ADICIONAR</button>
+                <button id="editCard" class="hidden">ALTERAR</button>
+            </section>
+
+        </div>
+    </div>
+    <div class="overlay hidden"></div>
+
+    <header>Quadro de atividades</header>
+
+    <main>
+        <button id="btn-add">
+            <span class="material-icons">add_circle</span>
+        </button>
+        <div class="collum-container">
+            <section class="collum">
+                <h2 class="collum-title">Coluna 1</h2>
+
+                <article class="card-wrapper card-variation-1">
+                    <label class="card-btn">
+                        <input type="checkbox">
+                        <span></span>
+                    </label>
+                    <button class="card-body">
+                        <div>
+                            <span class="card-title">Placeholder</span>
+                            <span class="card-duration">20M</span>
+                        </div>
+
+                        <span class="card-due">
+                            <div class="card-bottom">
+                                <span class="material-icons">calendar_today</span>
+                                <span class="card-due-remaining">7 days</span>
+                            </div>
+                        </span>
+                    </button>
+
+                </article>
+            </section>
+
+            <!-- <section class="collum">
+                    <h2 class="collum-title">Coluna 2</h2>
+                    <div class="card-container">
+                        <button class="card-container">
+                            <h3 class="card-title">Titulo Card</h3>
+                            <p class="card-body"></p>
+                        </button>
+                    </div>
+                </section> 
+                <section class="collum">
+                    <h2 class="collum-title">Coluna 3</h2>
+                    <div class="card-container">
+                        <button class="card-container">
+                            <h3 class="card-title">Titulo</h3>
+                            <p class="card-body"></p>
+                        </button>
+                    </div>
+                </section>   -->
+        </div>
+    </main>
+
+
+    <footer></footer>
+</body>
+
+</html>
