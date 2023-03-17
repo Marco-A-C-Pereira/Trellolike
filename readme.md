@@ -15,7 +15,7 @@ O projeto foi desenvolvido utilizando a stack vanilla de web **(HTML/CSS/JS)** p
 > npm run dev
 
 
-## Melhorias e funcionalidades
+## Melhorias e funcionalidades adicionais
 * Validação nos campos
 * Refatoração de código em alguns segmentos (Especialmente nos referentes a manipulação da checkbox de periodo)
 * Adicionar Drag and Drop para organizar a lista
