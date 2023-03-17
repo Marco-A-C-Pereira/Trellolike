@@ -63,13 +63,22 @@ main {
     .collum {
         display: flex;
         flex-direction: column;
-
+        
         .collum-title {
-            padding: 0 0.5rem;
-            border-radius: 15% 15% 0 0;
-            overflow: hidden;
-            background: blue;
-            width: max-content;
+            font-size: 1.5rem;
+            background: #f1ae91;
+            padding: 0.25rem 0.5rem;
+            border-radius: 25% 25% 0 0;
+            align-self: center;
+        }
+
+        .card-container {
+            background: #f3c4b069;
+            height: 100vh;
+
+            border-top: 3px solid #f1ae91;
+            // border-bottom: 2px solid #f1ae91;
+            // padding: 0.25rem 0 0.75rem;
         }
     }
 
@@ -86,7 +95,7 @@ main {
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 0.5rem 0 0;
+        padding: 1rem 0 0;
         margin-left: 0.5rem;
         text-align: left;
 
@@ -166,7 +175,7 @@ main {
     background: $mainColor;
 
     .card-btn {
-        background: darken($color: $mainColor, $amount: 5%);
+        background: #0587d1;
     }
 }
 

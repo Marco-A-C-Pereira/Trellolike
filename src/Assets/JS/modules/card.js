@@ -45,6 +45,7 @@ class Card {
 
     this.append();
   }
+
   get id() {
     return this._id;
   }
@@ -92,7 +93,7 @@ class Card {
 
     this.updateHTML();
 
-    document.querySelector(".collum").appendChild(this.#_cardNodes);
+    document.querySelector(".card-container").appendChild(this.#_cardNodes);
   }
 
   edit() {
@@ -115,7 +116,7 @@ class Card {
       // Não é a melhor boa prática, de string vira int 
       // Porém o método aceita mesmo assim XD
 
-      this.#_cardNodes.querySelector('.card-due-remaining').innerText = formatDistanceToNow(new Date(...selectedDate));
+      this.#_cardNodes.querySelector('.card-due-remaining').innerText = "in " + formatDistanceToNow(new Date(...selectedDate));
     } 
     else {
       this.#_cardBottom.classList.add('hidden')

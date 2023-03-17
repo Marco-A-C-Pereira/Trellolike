@@ -23,7 +23,7 @@ window.addEventListener('beforeunload', () => {
 
 function buildCards() {
     const cards = JSON.parse(localStorage.getItem('Cards'));
-    // console.log(cards);
+    console.log(cards);
 
     cards.forEach(JSONCard => {
 
