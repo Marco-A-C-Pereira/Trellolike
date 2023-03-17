@@ -1,4 +1,6 @@
 import { showModal_Edit, clearFields } from "./modal.js";
+import { formatDistanceToNow } from 'date-fns';
+
 export { Card };
 
 const inputFields = document.querySelectorAll(".input-container");
@@ -16,10 +18,11 @@ class Card {
   #_cardBtnCheckbox = this.#_cardNodes.querySelector(
     ".card-btn input[type=checkbox]"
   );
+  #_cardBottom = this.#_cardNodes.querySelector('.card-bottom');
 
   constructor(title, { time, type }, due, btn) {
-    (this._id = Card.cardInstances.length + 1 ), // Alterar a geração de ID
-    (this._title = title),
+    (this._id = Card.cardInstances.length + 1), // Alterar a geração de ID
+      (this._title = title),
       (this._duration = { time: time, type: type }),
       (this._due = due),
       (this._btn = btn);
@@ -33,17 +36,16 @@ class Card {
     this.#_cardNodes
       .querySelector(".card-body")
       .addEventListener("click", (e) => {
-        // console.log(e.target.parentNode);
-        // console.log(this);
+        console.log(this);
         clearFields();
         Card.selectedId = this._id;
         this.prepareFields();
         showModal_Edit();
       });
 
-      this.append()
+    this.append();
   }
-  get id(){
+  get id() {
     return this._id;
   }
 
@@ -54,55 +56,33 @@ class Card {
     this._title = value;
   }
 
-  get duration(){
-    return this._duration
+  get duration() {
+    return this._duration;
   }
 
   get time() {
     return this.duration._time;
   }
   set time(value) {
-    this._time = value
+    this._time = value;
   }
 
   get type() {
     return this.duration._type;
   }
-  set type(value){
+  set type(value) {
     this._type = value;
   }
 
   get due() {
     return this._due;
   }
-  set due(value){
+  set due(value) {
     this._due = value;
   }
 
   get btn() {
     return this._btn;
-  }
-
-  // log() {
-  //   // for (let key in this) {
-  //   //   console.log(key + " " + this[key]);
-  //   // }
-  //   for (let key in this) {
-  //     if (typeof this[key] !== "function") {
-  //       console.log("key:", this[key]);
-
-  //       if (key === "duration") {
-  //         for (let durKey in this[key]) {
-  //           console.log(this[key], this[key][durKey]);
-  //           // }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
-  log() {
-    console.log(this);
   }
 
   append() {
@@ -112,25 +92,35 @@ class Card {
 
     this.updateHTML();
 
-    // Adicionanr o tempo restante e o listener para exibir
-
     document.querySelector(".collum").appendChild(this.#_cardNodes);
   }
 
-  edit(){
+  edit() {
     this.updateHTML();
   }
 
   delete() {
-    this.#_cardNodes.remove()
+    this.#_cardNodes.remove();
   }
 
-  updateHTML(){
+  updateHTML() {
     this.#_cardNodes.querySelector(".card-title").innerText = this._title;
     this.#_cardNodes.querySelector(".card-duration").innerText =
       this._duration.time + this._duration.type;
-  }
 
+    if (this._due) {
+      this.#_cardBottom.classList.remove('hidden')
+      let selectedDate = this._due.split('-')
+      selectedDate[1] = +selectedDate[1] - 1 
+      // Não é a melhor boa prática, de string vira int 
+      // Porém o método aceita mesmo assim XD
+
+      this.#_cardNodes.querySelector('.card-due-remaining').innerText = formatDistanceToNow(new Date(...selectedDate));
+    } 
+    else {
+      this.#_cardBottom.classList.add('hidden')
+    }
+  }
 
   addDone() {
     this.#_cardNodes.classList.add("done");
@@ -144,20 +134,20 @@ class Card {
   prepareFields() {
     inputFields.forEach((field) => {
       for (let key in this) {
-        let keyString = key.substring(1)
+        let keyString = key.substring(1);
         let fieldInput = field.querySelector(`input[id=card-${keyString}]`);
 
-        if (this[key] !== "" &&
-         fieldInput &&
-        (this[key].time || this[key].type !== "")
-         ) {
-          fieldInput.value = this[key];
+        if (this[key] !== "" && fieldInput) {
+          if (keyString !== "duration") {
+            fieldInput.value = this[key];
+          }
 
-          if (keyString === "duration") {
+          if (keyString === "duration" && this[key].time && this[key].type) {
             fieldInput.value = this[key].time;
             document.querySelector(
               `.timeOptions label input[id^="${this[key].type}"]`
             ).checked = true;
+            console.log(fieldInput.value);
           }
 
           // Soa um pouco como gambiarra mas funciona
@@ -167,5 +157,4 @@ class Card {
       }
     });
   }
-
 }

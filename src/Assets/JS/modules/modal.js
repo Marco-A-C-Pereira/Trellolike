@@ -1,4 +1,5 @@
 import { Card } from "./card.js";
+
 export { showModal_Add, showModal_Edit, clearFields};
 
 const modalCardMenu = document.getElementById("modal-cardMenu");
@@ -138,7 +139,7 @@ function createCard() {
   );
 
   // Sintaxe feia e não reutilizável.
-  const card = new Card(
+  new Card(
     document.getElementById("card-title").value,
     {
       time: document.getElementById("card-duration").value,
